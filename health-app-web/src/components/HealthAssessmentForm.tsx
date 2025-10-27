@@ -42,17 +42,36 @@ export const HealthAssessmentForm = ({ onResultsReceived }: HealthAssessmentForm
     formState: { errors },
   } = useForm<HealthFormData>({
     resolver: zodResolver(healthSchema),
+    defaultValues: {
+      age: 30,
+      gender: "male",
+      cholesterol: 200,
+      bloodPressure: 120,
+      glucose: 100,
+      bmi: 25,
+      maxHeartRate: 150,
+      stDepression: 1,
+      smokes: "no",
+      drinks: "no",
+      hereditary: "no",
+    }
   });
 
   const onSubmit = async (data: HealthFormData) => {
     setIsSubmitting(true);
     
     try {
-      const { data: result, error } = await supabase.functions.invoke('calculate-health-risk', {
-        body: data,
+      // const { data: result, error } = await supabase.functions.invoke('calculate-health-risk', {
+      //   body: data,
+      // });
+      const resp = await fetch('/health', {
+        method: 'POST',
+        body: JSON.stringify(data),
       });
 
-      if (error) throw error;
+      const result = await resp.json();
+      console.log('result', result);
+      // if (error) throw error;
 
       onResultsReceived(result);
       toast.success("Health assessment completed!");

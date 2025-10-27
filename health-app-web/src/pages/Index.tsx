@@ -29,13 +29,13 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="space-y-12">
-          <div className="animate-slide-up">
+        <div className="flex gap-6">
+          <div className="grow animate-slide-up">
             <HealthAssessmentForm onResultsReceived={setResults} />
           </div>
 
           {results && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
+            <div className="flex flex-col gap-8 animate-fade-in">
               <div className="transform transition-all duration-300 hover:scale-105">
                 <RiskGauge
                   title="Diabetes Risk"
