@@ -20,8 +20,10 @@ const healthSchema = z.object({
   bmi: z.number().min(10).max(60),
   maxHeartRate: z.number().min(60).max(220),
   stDepression: z.number().min(0).max(10),
-  smokes: z.enum(["yes", "no"]),
-  drinks: z.enum(["yes", "no"]),
+  smokes: z.enum(["regularly", "occasionally", "no"]),
+  drinks: z.enum(["regularly", "occasionally", "no"]),
+  existingHeartDisease: z.enum(["yes", "no"]),
+  performsExercises: z.enum(["regularly", "occasionally", "no"]),
   hereditary: z.enum(["yes", "no"]),
 });
 
@@ -53,6 +55,8 @@ export const HealthAssessmentForm = ({ onResultsReceived }: HealthAssessmentForm
       stDepression: 1,
       smokes: "no",
       drinks: "no",
+      existingHeartDisease: "no",
+      performsExercises: "no",
       hereditary: "no",
     }
   });
@@ -201,12 +205,13 @@ export const HealthAssessmentForm = ({ onResultsReceived }: HealthAssessmentForm
             {/* Smoking */}
             <div className="space-y-2">
               <Label htmlFor="smokes">Do you smoke?</Label>
-              <Select onValueChange={(value) => setValue("smokes", value as "yes" | "no")}>
+              <Select onValueChange={(value) => setValue("smokes", value as "regularly" | "occasionally" | "no")}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="yes">Yes</SelectItem>
+                  <SelectItem value="regularly">Regularly</SelectItem>
+                  <SelectItem value="occasionally">Occasionally</SelectItem>
                   <SelectItem value="no">No</SelectItem>
                 </SelectContent>
               </Select>
@@ -216,12 +221,13 @@ export const HealthAssessmentForm = ({ onResultsReceived }: HealthAssessmentForm
             {/* Drinking */}
             <div className="space-y-2">
               <Label htmlFor="drinks">Do you drink alcohol?</Label>
-              <Select onValueChange={(value) => setValue("drinks", value as "yes" | "no")}>
+              <Select onValueChange={(value) => setValue("drinks", value as "regularly" | "occasionally" | "no")}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="yes">Yes</SelectItem>
+                  <SelectItem value="regularly">Regularly</SelectItem>
+                  <SelectItem value="occasionally">Occasionally</SelectItem>
                   <SelectItem value="no">No</SelectItem>
                 </SelectContent>
               </Select>
@@ -241,6 +247,37 @@ export const HealthAssessmentForm = ({ onResultsReceived }: HealthAssessmentForm
                 </SelectContent>
               </Select>
               {errors.hereditary && <p className="text-sm text-destructive">{errors.hereditary.message}</p>}
+            </div>
+
+            {/* Existing Heart Disease */}
+            <div className="space-y-2">
+              <Label htmlFor="existingHeartDisease">Do you have existing heart disease?</Label>
+              <Select onValueChange={(value) => setValue("existingHeartDisease", value as "yes" | "no")}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="yes">Yes</SelectItem>
+                  <SelectItem value="no">No</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.existingHeartDisease && <p className="text-sm text-destructive">{errors.existingHeartDisease.message}</p>}
+            </div>
+
+            {/* Performs Exercises */}
+            <div className="space-y-2">
+              <Label htmlFor="performsExercises">Do you perform regular exercise?</Label>
+              <Select onValueChange={(value) => setValue("performsExercises", value as "regularly" | "occasionally" | "no")}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="regularly">Regularly</SelectItem>
+                  <SelectItem value="occasionally">Occasionally</SelectItem>
+                  <SelectItem value="no">No</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.performsExercises && <p className="text-sm text-destructive">{errors.performsExercises.message}</p>}
             </div>
           </div>
 
