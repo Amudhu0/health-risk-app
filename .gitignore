@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+# Attach model folders manually
+models
+venv
+*.pyc
 
 # Editor directories and files
 .vscode/*
