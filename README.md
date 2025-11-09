@@ -53,8 +53,28 @@ npm run dev
 ## Running locally (server)
 
 1. Open a terminal in `health-app-server/`.
-2. Ensure Python dependencies are installed (use `requirements.txt` if present).
-3. Start the server (the project uses a lightweight Python server; check `app.py` for the exact run command).
+2. Install Python dependencies and start the server:
+
+```bash
+cd health-app-server
+python -m venv venv       # optional but recommended
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+## Running notebooks / model development
+
+1. Open a terminal in `health-app-model/`.
+2. Install notebook dependencies and launch Jupyter:
+
+```bash
+cd health-app-model
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+jupyter lab   # or `jupyter notebook`
+```
 
 ## Notes about form fields and backend mapping
 

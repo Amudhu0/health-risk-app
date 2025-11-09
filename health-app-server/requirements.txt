@@ -1,0 +1,6 @@
+Flask>=2.0
+numpy>=1.21
+joblib>=1.0
+scikit-learn>=1.0
+# Optional: use a production WSGI server like gunicorn
+# gunicorn>=20.0
