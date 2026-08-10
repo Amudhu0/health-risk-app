@@ -40,4 +40,4 @@ def predict_heart_disease(features):
 
 
 risk_percentage = predict_diabetes({"age":50,"gender":"female","cholesterol":200,"bloodPressure":90,"glucose":200,"bmi":18,"maxHeartRate":150,"stDepression":1,"smokes":"no","drinks":"regularly","existingHeartDisease":"no","performsExercises":"no","hereditary":"yes"})
-print('Diabetes risk Percentage.', risk_percentage)
+print('Diabetes risk Percentage..', risk_percentage)
